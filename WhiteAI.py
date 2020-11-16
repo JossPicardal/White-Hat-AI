@@ -239,7 +239,7 @@ class CveExplorerNVD:
                                                                      self.nvd_date_format)
                     currently_cve_date = self.utility.transform_date_object(last_modified_date, self.nvd_date_format)
                     if db_cve_date < currently_cve_date:
-                        # Create vulnerability data base.
+                        # Create Results Weakness data base.
                         self.utility.print_message(OK, 'Update {} : latest date={}, last modified date={}'.
                                                    format(year_db,
                                                           currently_cve_date.strftime(self.nvd_date_format),
@@ -250,7 +250,7 @@ class CveExplorerNVD:
                         self.utility.print_message(FAIL, 'Skip updating {} : no update from {}'.
                                                    format(year_db, db_cve_date.strftime(self.nvd_date_format)))
                 else:
-                    # Create vulnerability data base.
+                    # Create Results Weakness data base.
                     self.create_vuln_yearly_db(cve_year, last_modified_date)
                     update_flag = True
             except Exception as e:
@@ -260,7 +260,7 @@ class CveExplorerNVD:
         df_vuln_db = None
         if update_flag is True:
             try:
-                # Load updating vulnerability data base each year.
+                # Updates database
                 self.utility.print_message(OK, 'Create vulnerability database : {}'.format(self.nvd_path))
                 year_csv_list = glob.glob(os.path.join(self.nvd_db_dir, self.nvd_year_name))
 
